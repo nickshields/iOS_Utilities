@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="138"/>
+            <point key="canvasLocation" x="34.782608695652179" y="137.94642857142856"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="gHA-j4-4lS">
@@ -33,15 +33,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K11-0q-GbE">
-                                <rect key="frame" x="41" y="390" width="331" height="217"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K11-0q-GbE">
+                                <rect key="frame" x="41" y="390" width="332" height="217"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qbu-En-Mxw" firstAttribute="bottom" secondItem="K11-0q-GbE" secondAttribute="bottom" constant="201" id="NkJ-cs-kbS"/>
+                            <constraint firstItem="K11-0q-GbE" firstAttribute="centerX" secondItem="fvv-eu-Al8" secondAttribute="centerX" id="cSH-4h-khx"/>
+                            <constraint firstItem="K11-0q-GbE" firstAttribute="leading" secondItem="qbu-En-Mxw" secondAttribute="leading" constant="41" id="k01-oQ-oN4"/>
+                            <constraint firstItem="K11-0q-GbE" firstAttribute="top" secondItem="qbu-En-Mxw" secondAttribute="top" constant="390" id="nMo-cs-SjH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qbu-En-Mxw"/>
                     </view>
                     <navigationItem key="navigationItem" id="WpG-og-BiE"/>

@@ -9,24 +9,81 @@
 import UIKit
 import AuthenticationServices
 
-class ViewController: UIViewController {
+@IBDesignable class ViewController: UIViewController {
+    
+    var stackView = UIStackView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        configureStackView()
     }
     
-    func setupView(){
+    func configureStackView(){
+        view.addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 20
+        setStackViewConstraints()
+        addButtonsToStackView()
+    }
+    
+    func addButtonsToStackView(){
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "login_image")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        stackView.addArrangedSubview(imageView)
+
+        let titleLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = "lets login to this bitch"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        titleLabel.textAlignment = .center
+        stackView.addArrangedSubview(titleLabel)
+        
+        let loginLabel = UILabel()
+        loginLabel.translatesAutoresizingMaskIntoConstraints = false
+        loginLabel.text = "Login:"
+        stackView.addArrangedSubview(loginLabel)
+        
+        let username = UITextField()
+        username.placeholder = "Enter username."
+        username.translatesAutoresizingMaskIntoConstraints = false
+        username.setBottomBorder()
+        stackView.addArrangedSubview(username)
+        
+        let password = UITextField()
+        password.placeholder = "Enter password."
+        password.translatesAutoresizingMaskIntoConstraints = false
+        password.setBottomBorder()
+        stackView.addArrangedSubview(password)
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.black
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
+        
+        let loginButton = UIButton()
+        loginButton.setTitle("Sign the fuck in", for: .normal)
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        loginButton.backgroundColor = .black
+        loginButton.layer.cornerRadius = 10
+        stackView.addArrangedSubview(loginButton)
+        
         let appleButton = ASAuthorizationAppleIDButton()
         appleButton.translatesAutoresizingMaskIntoConstraints = false
         appleButton.addTarget(self, action: #selector(didTapAppleButton), for: .touchUpInside)
+        appleButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        stackView.addArrangedSubview(appleButton)
         
-        view.addSubview(appleButton)
-        NSLayoutConstraint.activate([
-            appleButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            appleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            appleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
-        ])
+    }
+    
+    func setStackViewConstraints(){
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
     
     @objc
@@ -57,11 +114,9 @@ extension ViewController: ASAuthorizationControllerDelegate {
             
         case let credentials as ASAuthorizationAppleIDCredential:
             let user = User(credentials: credentials)
-            print(user)
             performSegue(withIdentifier: "segue", sender: user)
             
         default: break
-            
         }
         
     }
@@ -73,7 +128,20 @@ extension ViewController: ASAuthorizationControllerDelegate {
 extension ViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) ->
         ASPresentationAnchor{
-            //Which window are we working with?
+            //This is for the login popup.
             return view.window!
     }
+}
+
+extension UITextField {
+  func setBottomBorder() {
+    self.borderStyle = .none
+    self.layer.backgroundColor = UIColor.white.cgColor
+
+    self.layer.masksToBounds = false
+    self.layer.shadowColor = UIColor.gray.cgColor
+    self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+    self.layer.shadowOpacity = 1.0
+    self.layer.shadowRadius = 0.0
+  }
 }
