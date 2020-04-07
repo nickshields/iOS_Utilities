@@ -18,7 +18,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <segue destination="CEB-LC-B59" kind="show" identifier="segue" id="xjh-qa-o92"/>
+                        <segue destination="CEB-LC-B59" kind="presentation" identifier="segue" id="xjh-qa-o92"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
